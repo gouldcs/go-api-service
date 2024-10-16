@@ -1,5 +1,11 @@
 package main
 
+import (
+	"net/http"
+
+	"github.com/gin-gonic/gin"
+)
+
 type Player struct {
 	PlayerID string `json:"playerId"`
 	Firstname string `json:"firstname"`
@@ -64,5 +70,43 @@ var cities = []City {
 }
 
 func main() {
-	return;
+    router := gin.Default()
+    router.GET("/teams", getTeams)
+    router.GET("/players", getPlayers)
+	router.GET("/players/:PlayerId", getPlayerById)
+
+    router.Run("localhost:8080")
+}
+
+
+func getTeams(c *gin.Context) {
+	c.IndentedJSON(http.StatusOK, teams)
+}
+
+func getPlayers(c *gin.Context) {
+	c.IndentedJSON(http.StatusOK, players)
+}
+
+func getPlayerById(c *gin.Context) {
+    ProvidedPlayerId := c.Param("PlayerId")
+	foundPlayer := getPlayerWithId(ProvidedPlayerId)
+
+	if (foundPlayer != nil) {
+		c.IndentedJSON(http.StatusOK, foundPlayer)
+	} else {
+		c.IndentedJSON(http.StatusNotFound, gin.H{"message": "player not found"})
+	}
+}
+
+func getPlayerWithId(ProvidedId string) *Player {
+	var player *Player
+	player = nil
+
+	for _, a := range players {
+        if a.PlayerID == ProvidedId {
+            player = &a
+        }
+    }
+
+	return player
 }
