@@ -1,0 +1,23 @@
+INSERT INTO players(first_name, last_name, jersey_number, team_id)
+VALUES
+	('DK', 'Metcalf', '14', 1),
+	('Geno', 'Smith', '7', 1),
+	('Zach', 'Charbonnet', '26', 1),
+	('Justin', 'Herbert', '10', 2),
+	('J.K.', 'Dobbins', '27', 2),
+	('Ladd', 'McConkey', '15', 2),
+	('Matthew', 'Stafford', '9', 3),
+	('Cooper', 'Kupp', '10', 3),
+	('Kyren', 'Williams', '23', 3),
+	('C.J.', 'Stroud', '7', 4),
+	('Stefon', 'Diggs', '14', 4),
+	('Tank', 'Dell', '3', 4),
+	('Aaron', 'Rodgers', '8', 5),
+	('Davante', 'Adams', '15', 5),
+	('Mike', 'Williams', '18', 5),
+	('Daniel', 'Jones', '8', 6),
+	('Malik', 'Nabers', '1', 6),
+	('Tommy', 'DeVito', '15', 6),
+	('Tyreek', 'Hill', '10', 7),
+	('Odell', 'Beckham Jr.', '3', 7),
+	('Tua', 'Tagovailoa', '1', 7);
