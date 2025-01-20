@@ -17,6 +17,7 @@ func main() {
     router := gin.Default()
     router.GET("/teams", utils.WithDB(db, team.GetTeams))
     router.GET("/cities", utils.WithDB(db, city.GetCities))
+    router.GET("/cities/:CityId", utils.WithDB(db, city.GetCityById))
     router.GET("/players", utils.WithDB(db, player.GetPlayers))
     router.GET("/players/:PlayerId", utils.WithDB(db, player.GetPlayerById))
     router.GET("/teams/:TeamId/players", utils.WithDB(db, player.GetPlayersOnTeam))

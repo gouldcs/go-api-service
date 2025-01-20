@@ -25,5 +25,12 @@ func GetCities(c *gin.Context, db *gorm.DB) {
 }
 
 func GetCityById(c *gin.Context, db *gorm.DB) {
-
+	var city City
+	ProvidedCityId := c.Param("CityId")
+	result := db.Where("city_id = ?", ProvidedCityId).Find(&city)
+	if result.Error != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": result.Error.Error()})
+		return
+	}
+	c.IndentedJSON(http.StatusOK, city)
 }
