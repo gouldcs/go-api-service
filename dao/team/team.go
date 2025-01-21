@@ -39,19 +39,3 @@ func GetTeamById(c *gin.Context, db *gorm.DB) {
 	}
 	c.IndentedJSON(http.StatusOK, team)
 }
-
-func GetTeamsById(db *gorm.DB) gin.HandlerFunc {
-    return func(c *gin.Context) {
-        ProvidedTeamId := c.Param("PlayerId")
-        var teams []Team
-        result := db.Find(&teams, ProvidedTeamId)
-
-        if (result.Error == nil) {
-            c.IndentedJSON(http.StatusOK, teams)
-            return
-        } else {
-            c.IndentedJSON(http.StatusNotFound, gin.H{"message": "team not found"})
-            return
-        }
-    }
-}
