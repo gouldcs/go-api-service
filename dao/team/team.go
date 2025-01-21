@@ -25,6 +25,21 @@ func GetTeams(c *gin.Context, db *gorm.DB) {
 	c.IndentedJSON(http.StatusOK, teams)
 }
 
+func GetTeamById(c *gin.Context, db *gorm.DB) {
+	var team Team
+	ProvidedTeamId := c.Param("TeamId")
+
+	result := db.
+				Preload("City").
+				Where("team_id = ?", ProvidedTeamId).
+				Find(&team)
+	if result.Error != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": result.Error.Error()})
+		return
+	}
+	c.IndentedJSON(http.StatusOK, team)
+}
+
 func GetTeamsById(db *gorm.DB) gin.HandlerFunc {
     return func(c *gin.Context) {
         ProvidedTeamId := c.Param("PlayerId")
