@@ -1,4 +1,4 @@
-package main
+package config
 
 import (
 	"log"
@@ -8,8 +8,8 @@ import (
 )
 
 func GetEnvironmentVariable(key string) string {
-    envLoadErr := godotenv.Load(".env")
-    if envLoadErr != nil { log.Fatalf("error loading .env file.")}
+	envLoadErr := godotenv.Load(".env")
+	if envLoadErr != nil { log.Fatalf("error loading .env file.")}
 
 	return os.Getenv(key)
 }

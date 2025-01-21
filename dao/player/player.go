@@ -19,6 +19,7 @@ type Player struct {
 }
 
 func GetPlayers(c *gin.Context, db *gorm.DB) {
+	log.Printf("Getting players")
 	var players []Player
 	result := db.
 				Preload("Team").

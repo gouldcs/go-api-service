@@ -1,4 +1,4 @@
-package main
+package config
 
 import (
 	"fmt"
@@ -9,6 +9,9 @@ import (
 )
 
   func GetDB() (*gorm.DB, error) {
+	log.Printf("running db with user=%s on port=%s",
+		GetEnvironmentVariable("DB_USER"),
+		GetEnvironmentVariable("DB_PORT"))
 	dsn := fmt.Sprintf("host=%s user=%s password=%s dbname=%s port=%s sslmode=%s TimeZone=%s",
 					GetEnvironmentVariable("DB_HOST"),
 					GetEnvironmentVariable("DB_USER"),
