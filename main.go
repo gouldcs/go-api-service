@@ -25,6 +25,7 @@ func main() {
     router.GET("/cities/:CityId/players", utils.WithDB(db, player.GetPlayersOnTeam))
 
     router.PUT("/cities", utils.WithDB(db, city.PutCity))
+    router.PUT("/teams", utils.WithDB(db, team.PutTeam))
 
     router.Run("localhost:8080")
 }
